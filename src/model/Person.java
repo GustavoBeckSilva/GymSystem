@@ -7,9 +7,14 @@ import java.util.Date;
 public class Person {
 
 // variáveis
-    String name;
-    String CPF;
-    Date dateOfBirth;
+    protected String name;
+    private String CPF;
+    protected Date dateOfBirth;
+
+// construtor
+    public Person(String name) {
+        this.name = name;
+    }   
     
 // getters e setters
     public String getName() {
@@ -39,8 +44,7 @@ public class Person {
 // métodos
     @Override
     public String toString(){
-    
-        return "test";
+        return this.name + (CPF != null ? ": " + getCPF() : "");
     }
 
     public String showInformation(){
