@@ -1,4 +1,3 @@
-
 package model;
 
 import java.text.DecimalFormat;
@@ -6,21 +5,24 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class PhysicalAssessment {
-    
-// variáveis
+
+    // variáveis
     private Date date;
-    private double weigth;
+    private double weight;
     private double height;
     private double bodyFatPercentage;
-    private Person member;
+    private Member assessedMember;
+    private Trainer evaluatorTrainer;
     private SimpleDateFormat formattedDate = new SimpleDateFormat("dd/MM/yyyy HH:mm");
-    
-// construtor
-    public PhysicalAssessment() {
-        date = new Date();
+
+    // construtor
+    public PhysicalAssessment(Member assessedMember, Trainer evaluatorTrainer) {
+        this.evaluatorTrainer = evaluatorTrainer;
+        this.assessedMember = assessedMember;
+        this.date = new Date();
     }
-    
-// getters e setters
+
+    // getters e setters
     public Date getDate() {
         return date;
     }
@@ -29,12 +31,12 @@ public class PhysicalAssessment {
         this.date = date;
     }
 
-    public double getWeigth() {
-        return weigth;
+    public double getWeight() {
+        return weight;
     }
 
-    public void setWeigth(double weigth) {
-        this.weigth = weigth;
+    public void setWeight(double weight) {
+        this.weight = weight;
     }
 
     public double getHeight() {
@@ -53,40 +55,24 @@ public class PhysicalAssessment {
         this.bodyFatPercentage = bodyFatPercentage;
     }
 
-    public Person getMember() {
-        return member;
+    public Member getAssessedMember() {
+        return assessedMember;
     }
 
-    public void setMember(Person member) {
-        this.member = member;
-    }
-
-    public SimpleDateFormat getFormattedDate() {
-        return formattedDate;
-    }
-
-    public void setFormattedDate(SimpleDateFormat formattedDate) {
-        this.formattedDate = formattedDate;
-    }
-    
-// métodos
-    public double calculateBMI() {
-        return weigth / Math.pow(height, 2);
+    public Trainer getEvaluatorTrainer() {
+        return evaluatorTrainer;
     }
 
     public String showAssessment() {
-        
         DecimalFormat formatoNum = new DecimalFormat("0.0#");
-
-        String informationText = "";
-        
-        informationText = "Data Avaliação: " + formattedDate.format(date);
-        informationText += "\nAluno: "+ member;
-        informationText += "\nPeso: " + ((weigth != 0) ? formatoNum.format(weigth) : "Sem informações");
+        String informationText = "Data Avaliação: " + formattedDate.format(date);
+        informationText += "\nAluno: " + assessedMember.getName();
+        informationText += "\nAvaliador: " + evaluatorTrainer.getName();
+        informationText += "\nPeso: " + ((weight != 0) ? formatoNum.format(weight) : "Sem informações");
         informationText += "\nAltura: " + ((height != 0) ? formatoNum.format(height) : "Sem informações");
         informationText += "\nPorcentagem de Gordura: " + ((bodyFatPercentage != 0) ? formatoNum.format(bodyFatPercentage) : "Sem informações");
 
-        if (weigth != 0 && height != 0){
+        if (weight != 0 && height != 0) {
             informationText += "\nIMC: " + formatoNum.format(calculateBMI());
         }
 
@@ -96,5 +82,9 @@ public class PhysicalAssessment {
     @Override
     public String toString() {
         return formattedDate.format(date) + " -> " + calculateBMI();
+    }
+
+    public double calculateBMI() {
+        return weight / Math.pow(height, 2);
     }
 }

@@ -1,22 +1,21 @@
-
 package model;
 
 import java.util.ArrayList;
-import java.util.Date;
 
 public class Member extends Person {
-    
+
+    // variáveis
     private int registration;
-    private ArrayList <PhysicalAssessment> physicalAssessmentList;
-    
-// construtor
-    public Member(String name, int registration){
+    private ArrayList<PhysicalAssessment> physicalAssessmentList;
+
+    // construtor
+    public Member(String name, int registration) {
         super(name);
         this.registration = registration;
         physicalAssessmentList = new ArrayList<>();
     }
 
-// getters e setters
+    // getters e setters
     public int getRegistration() {
         return registration;
     }
@@ -32,43 +31,34 @@ public class Member extends Person {
     public void setPhysicalAssessmentList(ArrayList<PhysicalAssessment> physicalAssessmentList) {
         this.physicalAssessmentList = physicalAssessmentList;
     }
-    
-// métodos
-    public String showReviewHistory(){
-        
+
+    // métodos
+    public String showReviewHistory() {
         String informationText = "";
-        
-        for (int i = 0; i < physicalAssessmentList.size(); i++)
-            informationText += "\n- " + physicalAssessmentList.get(i);
-        
+
+        for (PhysicalAssessment assessment : physicalAssessmentList) {
+            informationText += "\n- " + assessment.showAssessment() + "\nAvaliador: " + assessment.getEvaluatorTrainer().getName();
+        }
+
         return informationText;
-        
     }
-    
-    public void addPhysicalAssessment(PhysicalAssessment physicalAssessment){
+
+    public void addPhysicalAssessment(PhysicalAssessment physicalAssessment) {
         physicalAssessmentList.add(physicalAssessment);
-        physicalAssessment.setMember(this); // CRIAR MÉTODO
     }
-    
-    public void removePhysicalAssessment(PhysicalAssessment physicalAssessment){
-        physicalAssessmentList.remove(physicalAssessment);
-        physicalAssessment.setMember(null); // CRIAR MÉTODO
-    }
-    
+
     @Override
-    public String showInformation(){
+    public String showInformation() {
         String informationText = "";
 
         informationText += "\nMatricula: " + registration;
-        informationText +=  "\n" + super.showInformation();
+        informationText += "\n" + super.showInformation();
         informationText += "\nHistórico de Avaliações: " + showReviewHistory();
-        
+
         return informationText;
-        
     }
 
-    public void returnBirthDate(){
-        super.dateOfBirth = new Date();
+    public void mostraInfo() {
+        System.out.println(showInformation());
     }
- 
 }

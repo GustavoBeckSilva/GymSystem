@@ -4,7 +4,7 @@ package model;
 import java.util.ArrayList;
 import java.util.Date;
 
-public class Person {
+public abstract class Person {
 
 // variáveis
     protected String name;
