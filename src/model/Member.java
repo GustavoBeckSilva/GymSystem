@@ -45,6 +45,7 @@ public class Member extends Person {
 
     public void addPhysicalAssessment(PhysicalAssessment physicalAssessment) {
         physicalAssessmentList.add(physicalAssessment);
+        physicalAssessment.setAssessedMember(this);
     }
 
     @Override
@@ -61,4 +62,11 @@ public class Member extends Person {
     public void mostraInfo() {
         System.out.println(showInformation());
     }
+
+    @Override
+    public void turnMonth(Object pa) {
+        addPhysicalAssessment((PhysicalAssessment)pa);
+    }
+
+    
 }

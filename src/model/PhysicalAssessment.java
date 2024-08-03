@@ -21,6 +21,11 @@ public class PhysicalAssessment {
         this.assessedMember = assessedMember;
         this.date = new Date();
     }
+    
+    public PhysicalAssessment(Trainer evaluatorTrainer) {
+        this.evaluatorTrainer = evaluatorTrainer;
+        this.date = new Date();
+    }
 
     // getters e setters
     public Date getDate() {
@@ -55,6 +60,10 @@ public class PhysicalAssessment {
         this.bodyFatPercentage = bodyFatPercentage;
     }
 
+    public void setAssessedMember(Member member){
+        this.assessedMember = member;
+    }
+    
     public Member getAssessedMember() {
         return assessedMember;
     }

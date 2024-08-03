@@ -57,4 +57,8 @@ public abstract class Person {
     
     }
     
+// métodos abstratos  com a definição do método abstrato viraMes(Object obj) na classe Pessoa,
+    
+    public abstract void turnMonth(Object pa);
+    
 }

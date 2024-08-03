@@ -31,4 +31,14 @@ public class Trainer extends Person {
     public void setHourlyWage(double hourlyWage) {
         this.hourlyWage = hourlyWage;
     }
+    
+    // métodos    
+    @Override
+    public void turnMonth(Object pa) {
+      
+        int hoursWorked = Integer.parseInt(pa.toString());
+        
+        System.out.println("\nO professor " + this.getName() + " recebeu " + hoursWorked * this.getHourlyWage());
+        
+    }
 }
